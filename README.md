@@ -10,6 +10,7 @@ Ova arhiva sadrži implementacije odabranih projekata iz knjige `Data Structures
 
 - `.py` fajlovi: Rešenja zadataka koja uključuju tekst problema i implementaciju. Nazivi fajlova se pridržavaju sledećeg formata: `P-Poglavlje.Zadatak.py` (primer: `P-4.23.py`).
 - `README.md`: Pregled sadržaja arhive i uputstvo za pokretanje fajlova.
+- `Analysis.pdf`: Analiza implementacije projektnih zadataka.
 
 ## Zahtevi za pokretanje fajlova
 
