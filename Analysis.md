@@ -14,7 +14,7 @@ Polinom se interno čuva u listi `_polynomial_list`, gde indeks elementa direktn
 Rezultat glavne funkcije `calculate_derivative` je nova instanca klase `Polynomial`, što omogućava konzistentnost podataka i lako nalaženje n-tog izvoda.
 
 ### 4. Diskusija
-Najveći izazov ove implementacije je predstavljala transformacija iz tekstualnog oblika u listu i obrnuto. Upotreba regularnih izraza omogućava fleksibilnost unosa, dok reprezentacija u vidu liste omogućava efikasno izračunavanje izvoda u O(n) vremenu, gde je n stepen polinoma.
+Najveći izazov ove implementacije je predstavljala transformacija iz tekstualnog oblika u listu i obrnuto. Upotreba regex-a omogućava fleksibilnost unosa, dok reprezentacija u vidu liste omogućava efikasno izračunavanje izvoda u O(n) vremenu, gde je n stepen polinoma.
 
 ## [P-4.23] Rekurzivna pretraga fajlova
 
@@ -27,10 +27,7 @@ Funkcija koristi **Depth-First Search (DFS)** strategiju za obilazak direktoriju
 - Ako je zapis direktorijum, vrši se rekurzivni poziv koji produbljuje pretragu.
 - Ako je zapis fajl, vrši se poređenje imena sa ciljanim parametrom.
 
-### 3. Upravljanje greškama
-Sistem je osiguran od prekida rada korišćenjem `try-except` blokova koji hvataju `PermissionError` i `FileNotFoundError`.
-
-### 4. Diskusija
+### 3. Diskusija
 Rekurzivni pristup prirodno odgovara hijerarhijskoj strukturi fajl sistema. Korišćenjem `os.path` modula, rešenje je nezavisno od operativnog sistema.
 
 ## [P-6.32] ArrayDeque
@@ -45,7 +42,7 @@ Logika se oslanja na tri ključne promenljive:
 - `_size`: Brojač elemenata koji razdvaja logičku veličinu od fizičkog kapaciteta niza.
 
 ### 3. Ključne operacije i modularna aritmetika
-Vremenska složenost O(1) postignuta je izbegavanjem pomeranja elemenata. Umesto toga, koristi se modulo aritmetika za "kruženje" indeksa:
+Vremenska složenost O(1) postignuta je izbegavanjem pomeranja elemenata. Umesto toga, koristi se modularna aritmetika za "kruženje" indeksa:
 - `add_first`: `(self._front - 1) % len(self._data)`
 - `delete_first`: `(self._front + 1) % len(self._data)`
 - `resize`: Kada se dostigne `_size == len(_data)`, niz se udvostručuje, a elementi se re-alignuju počevši od indeksa 0.
@@ -63,7 +60,7 @@ Binarno stablo je implementirano pomoću Python liste `_data`, gde:
 - levi potomak čvora na poziciji `p` se nalazi na indeksu `2p + 1`
 - desni potomak čvora na poziciji `p` se nalazi na indeksu `2p + 2`
 
-Neiskorišćene pozicije u nizu popunjene su vrednošću `None`, što omogućava fleksibilno proširenje stabla bez potrebe za kontinualnim popunjavanjem svih čvorova. Dodatno, promenljiva `_size` čuva broj validnih elemenata u stablu, ne kapaciteta liste `_data`.
+Neiskorišćene pozicije u nizu popunjene su vrednošću `None`, što omogućava fleksibilno proširivanje stabla bez potrebe za kontinualnim popunjavanjem svih čvorova. Dodatno, promenljiva `_size` čuva broj validnih elemenata u stablu, ne kapaciteta liste `_data`.
 
 ### 3. Osnovne operacije
 
@@ -80,15 +77,13 @@ Operacija `depth` je implementirana rekurzivno, oslanjajući se na relaciju izme
 
 ### 4. Ažuriranje
 
-
 Dodavanje elemenata (`add_root`, `add_left`, `add_right`) zahteva proveru validnosti pozicije i postojanja odgovarajućeg deteta, čime se sprečava narušavanje strukture stabla.
 
-Brisanje čvora (`delete`) je ograničeno na čvorove sa najviše jednim detetom. U slučaju da čvor ima jedno dete, potpuno podstablo se "podiže" na poziciju obrisanog čvora. Ovo je realizovano rekurzivnom metodom `_move_subtree`, koja kopira strukturu podstabla na novu poziciju u nizu.
+Brisanje čvora (`delete`) je ograničeno na čvorove sa najviše jednim detetom. U slučaju da čvor ima jedno dete, podstablo se "podiže" na poziciju obrisanog čvora. Ovo je realizovano rekurzivnom metodom `_move_subtree`, koja kopira strukturu podstabla na novu poziciju u nizu.
 
 ### 5. Operacija attach
 
 Metoda `attach` omogućava "kačenje" dva postojeća binarna stabla kao levog i desnog podstabla lista `p`. Kopiranje podstabala realizovano je metodom `_copy_subtree`, koja koristi red kako bi se očuvala struktura stabla prilikom premeštanja elemenata u novi niz.
-
 
 ### 6. Diskusija
 
@@ -102,7 +97,7 @@ Implementirana je optimizovana verzija Quick Sort algoritma koja koristi `stack`
 ### 2. Algoritam i particionisanje
 Algoritam se oslanja na **in-place** zamenu elemenata:
 - **Pivot**: Bira se poslednji element u trenutnom opsegu.
-- **Particionisanje**: Dva pokazivača (`left`, `right`) se kreću jedan ka drugom, razmenjujući elemente tako da svi manji od pivota završe levo, a veći desno.
+- **Particionisanje**: Dva pokazivača (`left`, `right`) se kreću jedan ka drugom, menjajući elemente tako da svi manji od pivota završe levo, a veći desno.
 
 ### 3. Simulacija rekurzije
-Umesto rekurzivnih poziva, koristi se Python lista kao **stack** koji čuva `tuple`-ove `(a, b)` koji predstavljaju granice nesortiranih podnizova. Algoritam radi dok god stack nije prazan, što garantuje da će svaki deo niza biti obrađen.
+Umesto rekurzivnih poziva, koristi se Python lista kao **stack** koji čuva **tuple**-ove `(a, b)`, granice nesortiranih podnizova. Algoritam radi dokle god stack nije prazan, što garantuje da će ceo niz biti obrađen.
