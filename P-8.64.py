@@ -155,7 +155,7 @@ class ArrayBinaryTree:
         if self.num_children(p) == 2:
             raise ValueError("Position has two children")
 
-        element: Any = self._data[p]
+        element = self._data[p]
         child_index = self.left(p) if self.left(p) is not None else self.right(p)
 
         if child_index is not None:

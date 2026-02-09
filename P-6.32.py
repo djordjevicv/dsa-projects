@@ -27,7 +27,7 @@ class ArrayDeque:
     """Returns True if the deque contains no elements."""
     return self._size == 0
 
-  def first(self) -> object:
+  def first(self) -> Any:
     """
     Returns (but does not remove) the element at the front of the deque.
 
@@ -38,7 +38,7 @@ class ArrayDeque:
       raise Empty('Queue is empty')
     return self._data[self._front]
 
-  def last(self) -> object:
+  def last(self) -> Any:
     """
     Returns (but does not remove) the element at the back of the deque.
 
