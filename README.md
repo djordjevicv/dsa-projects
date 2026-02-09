@@ -4,7 +4,7 @@
 
 ## Opis projekta
 
-Ova arhiva sadrži implementacije odabranih projekata iz knjige `Data Structures and Algorithms in Python`.
+Ova arhiva sadrži implementacije odabranih projekata iz knjige *Data Structures and Algorithms in Python*.
 
 ## Pregled sadržaja arhive
 
