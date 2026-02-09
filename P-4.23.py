@@ -47,5 +47,5 @@ results = find(path, filename)
 if results:
   for file_path in results:
     print(file_path)
-  else:
+else:
     print("No matching files found.")
